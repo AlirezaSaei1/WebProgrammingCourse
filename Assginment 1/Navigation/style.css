@@ -167,6 +167,17 @@ main {
   left: 0;
 }
 
+/* Task 4 */
+.navbar:hover {
+  width: 16rem;
+}
+
+/* Task 5 */
+.navbar:hover .logo svg {
+  transform: rotate(-180deg); 
+    margin-left: 11rem;
+}
+
 .link-text {
   margin-left: 1rem;
 }
