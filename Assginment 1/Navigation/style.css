@@ -152,7 +152,8 @@ main {
 
 .navbar {
   transition: width var(--transition-speed) ease;
-  overflow: scroll;
+  /* Changed overflow type from scroll to hidden */
+  overflow: hidden;
     
   /* Task 1 */
   height: 100vh; 
