@@ -153,11 +153,18 @@ main {
 .navbar {
   transition: width var(--transition-speed) ease;
   overflow: scroll;
+    
   /* Task 1 */
   height: 100vh; 
   width: 5rem;
+    
   /* Task 2 */
   background-color: var(--bg-primary);
+    
+  /* Task 3 */  
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .link-text {
