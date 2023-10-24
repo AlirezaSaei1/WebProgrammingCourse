@@ -178,6 +178,14 @@ main {
     margin-left: 11rem;
 }
 
+/* Task 6 */
+.link-text {
+  display: none;
+}
+.navbar:hover .link-text {
+  display: block;
+}
+
 .link-text {
   margin-left: 1rem;
 }
