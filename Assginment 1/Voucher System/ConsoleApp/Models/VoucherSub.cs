@@ -18,3 +18,16 @@ public class VoucherSub
         Price = price;
     }
 }
+
+public class VoucherSubComparer : IEqualityComparer<VoucherSub>
+{
+    public bool Equals(VoucherSub? x, VoucherSub? y)
+    {
+        return x.RowNumber == y.RowNumber;
+    }
+
+    public int GetHashCode(VoucherSub obj)
+    {
+        return obj.Product.GetHashCode() ^ obj.Quantity.GetHashCode();
+    }
+}

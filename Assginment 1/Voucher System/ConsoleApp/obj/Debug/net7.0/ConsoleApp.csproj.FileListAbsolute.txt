@@ -61,3 +61,10 @@ C:\Users\n.karampour\Desktop\Quera\Problem-1\SaleVouchers-Project\ConsoleApp\obj
 C:\Users\n.karampour\Desktop\Quera\Problem-1\SaleVouchers-Project\ConsoleApp\obj\Debug\net7.0\ConsoleApp.dll
 C:\Users\n.karampour\Desktop\Quera\Problem-1\SaleVouchers-Project\ConsoleApp\obj\Debug\net7.0\refint\ConsoleApp.dll
 C:\Users\n.karampour\Desktop\Quera\Problem-1\SaleVouchers-Project\ConsoleApp\obj\Debug\net7.0\ConsoleApp.pdb
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.AssemblyInfoInputs.cache
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.AssemblyInfo.cs
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.csproj.CoreCompileInputs.cache
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.dll
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\refint\ConsoleApp.dll
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.pdb
