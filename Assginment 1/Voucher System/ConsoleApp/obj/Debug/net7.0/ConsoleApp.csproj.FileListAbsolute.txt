@@ -68,3 +68,10 @@ F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\
 F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.dll
 F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\refint\ConsoleApp.dll
 F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.pdb
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\bin\Debug\net7.0\ConsoleApp.exe
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\bin\Debug\net7.0\ConsoleApp.deps.json
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\bin\Debug\net7.0\ConsoleApp.runtimeconfig.json
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\bin\Debug\net7.0\ConsoleApp.dll
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\bin\Debug\net7.0\ConsoleApp.pdb
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ConsoleApp.genruntimeconfig.cache
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\Voucher System\ConsoleApp\obj\Debug\net7.0\ref\ConsoleApp.dll
