@@ -2,10 +2,10 @@
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var n = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 var input = Console.ReadLine();
                 var parts = input?.Split(" ");
@@ -26,6 +26,7 @@
                         break;
                     default:
                         Console.WriteLine("Invalid Input");
+                        break;
                 }
 
             }
