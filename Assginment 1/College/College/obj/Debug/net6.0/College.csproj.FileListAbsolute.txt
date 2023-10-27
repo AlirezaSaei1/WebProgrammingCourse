@@ -1,0 +1,15 @@
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\bin\Debug\net6.0\College.exe
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\bin\Debug\net6.0\College.deps.json
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\bin\Debug\net6.0\College.runtimeconfig.json
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\bin\Debug\net6.0\College.dll
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\bin\Debug\net6.0\ref\College.dll
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\bin\Debug\net6.0\College.pdb
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\College.csproj.AssemblyReference.cache
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\College.GeneratedMSBuildEditorConfig.editorconfig
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\College.AssemblyInfoInputs.cache
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\College.AssemblyInfo.cs
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\College.csproj.CoreCompileInputs.cache
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\College.dll
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\ref\College.dll
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\College.pdb
+F:\University 7\Web\WebProgrammingCourse\Assginment 1\College\College\obj\Debug\net6.0\College.genruntimeconfig.cache
