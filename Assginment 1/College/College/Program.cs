@@ -1,7 +1,10 @@
-﻿namespace College
+﻿using College.Services;
+
+namespace College
 {
     public class Program
     {
+        private static readonly UserService _userService = new UserService();
         public static void Main(string[] args)
         {
             var n = Convert.ToInt32(Console.ReadLine());
