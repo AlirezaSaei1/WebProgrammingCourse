@@ -23,7 +23,7 @@ public class VoucherSubComparer : IEqualityComparer<VoucherSub>
 {
     public bool Equals(VoucherSub? x, VoucherSub? y)
     {
-        return x.RowNumber == y.RowNumber;
+        return x.Product.Code == y.Product.Code;
     }
 
     public int GetHashCode(VoucherSub obj)
