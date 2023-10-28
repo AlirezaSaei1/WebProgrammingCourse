@@ -5,14 +5,34 @@ namespace College.Services
 {
     public class UserService
     {
-        private readonly List<User> _users;
+        private List<User> users;
 
         public UserService()
         {
-            _users = new List<User>();
+            users = new List<User>();
+            users.Add(new User("ADMIN", Role.ADMIN, Status.ACTIVE));
         }
 
-        public void RegisterUser(string username, Role role, Status status) {}
+        public void RegisterUser(string username, string role)
+        {
+            var user = FindUserByUsername(username);
+
+            if (user == null)
+            {
+                if (!Enum.TryParse(role, out Role parsedRole))
+                {
+                    Console.WriteLine("INVALID ROLE");
+                    return;
+                }
+                
+                users.Add(new User(username, parsedRole, Status.INACTIVE));
+                Console.WriteLine("WAITING FOR ACCEPT");
+            }
+            else
+            {
+                Console.WriteLine("INVALID USERNAME");
+            }
+        }
 
         public void ApproveMembership(User adminUser, User user) {}
 
@@ -22,12 +42,11 @@ namespace College.Services
 
         public void ChangeRole(User adminUser, User user, Role newRole) {}
 
-        public Status GetUserStatus(string username)
-        { return Status.Active;}
+        public void GetUserStatus(string username) {}
 
         private User FindUserByUsername(string username)
         {
-            return _users.Find(u => u.Username == username);
+            return users.Find(u => u.Username == username);
         }
     }
 }
