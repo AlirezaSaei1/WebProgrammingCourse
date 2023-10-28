@@ -149,7 +149,50 @@ namespace College.Services
             Console.WriteLine(string.Join(" ", waitingUsers));
         }
 
-        public void ChangeRole(User adminUser, User user, Role newRole) {}
+        public void ChangeRole(string adminUsername, string username, string newRole)
+        {
+            var adminUser = FindUserByUsername(adminUsername);
+            var user = FindUserByUsername(username);
+
+            if (adminUser == null || user == null)
+            {
+                Console.WriteLine("INVALID USERNAME");
+                return;
+            }
+
+            if (adminUser.UserStatus == Status.INACTIVE || user.UserStatus == Status.INACTIVE)
+            {
+                Console.WriteLine("WAITING FOR ADMIN");
+                return;
+            }
+
+            if (!Enum.TryParse(newRole.ToUpper(), out Role role) || !Enum.IsDefined(typeof(Role), role))
+            {
+                Console.WriteLine("INVALID ROLE");
+                return;
+            }
+
+            if (adminUser.UserRole < role || adminUser.UserRole == role)
+            {
+                Console.WriteLine("NOT ENOUGH ACCESS");
+                return;
+            }
+
+            if (adminUser.UserRole < user.UserRole || adminUser.UserRole == user.UserRole)
+            {
+                Console.WriteLine("INVALID CHANGEROLE");
+                return;
+            }
+
+            if (user.UserRole == role)
+            {
+                Console.WriteLine("ALREADY HAS THIS ROLE");
+                return;
+            }
+
+            user.UserRole = role;
+            Console.WriteLine("ROLE CHANGED SUCCESSFULLY");
+        }
 
         public void GetUserStatus(string username)
         {

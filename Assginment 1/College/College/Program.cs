@@ -48,6 +48,10 @@ namespace College
                         userService.GetWaitingList(username);
                         break;
                     case "CHANGEROLE":
+                        username1 = parts[1];
+                        username2 = parts[2];
+                        role = parts[3];
+                        userService.ChangeRole(username1, username2, role);
                         break;
                     case "STATUS":
                         username = parts[1];
