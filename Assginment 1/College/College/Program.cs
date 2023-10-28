@@ -19,49 +19,34 @@ namespace College
                 var input = Console.ReadLine();
                 var parts = input?.Split(" ");
                 
-                //Command Parts
-                string username;
-                string username1;
-                string username2;
-                string role;
-                string status;
+                // Variable to store command results
+                string result;
                 
                 switch (parts?[0])
                 {
                     case "REGISTER":
-                        username = parts[1];
-                        role = parts[2];
-                        userService.RegisterUser(username, role);
+                        result = userService.RegisterUser(parts[1], parts[2]);
                         break;
                     case "APPROVE":
-                        username1 = parts[1];
-                        username2 = parts[2];
-                        userService.ApproveMembership(username1, username2);
+                        result = userService.ApproveMembership(parts[1], parts[2]);
                         break;
                     case "REJECT":
-                        username1 = parts[1];
-                        username2 = parts[2];
-                        userService.RejectMembership(username1, username2);
+                        result = userService.RejectMembership(parts[1], parts[2]);
                         break;
                     case "QUEUE":
-                        username = parts[1];
-                        userService.GetWaitingList(username);
+                        result = userService.GetWaitingList(parts[1]);
                         break;
                     case "CHANGEROLE":
-                        username1 = parts[1];
-                        username2 = parts[2];
-                        role = parts[3];
-                        userService.ChangeRole(username1, username2, role);
+                        result = userService.ChangeRole(parts[1], parts[2], parts[3]);
                         break;
                     case "STATUS":
-                        username = parts[1];
-                        userService.GetUserStatus(username);
+                        result = userService.GetUserStatus(parts[1]);
                         break;
                     default:
-                        Console.WriteLine("Invalid Input");
-                        break;  
+                        result = "INVALID COMMAND";
+                        break;
                 }
-
+                Console.WriteLine(result);
             }
         }
     }

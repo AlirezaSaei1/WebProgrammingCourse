@@ -13,7 +13,7 @@ namespace College.Services
             users.Add(new User("ADMIN", Role.ADMIN, Status.ACTIVE));
         }
 
-        public void RegisterUser(string username, string role)
+        public string RegisterUser(string username, string role)
         {
             var user = FindUserByUsername(username);
 
@@ -21,117 +21,103 @@ namespace College.Services
             {
                 if (!Enum.TryParse(role, out Role parsedRole))
                 {
-                    Console.WriteLine("INVALID ROLE");
-                    return;
+                    return "INVALID ROLE";
                 }
                 
                 users.Add(new User(username, parsedRole, Status.INACTIVE));
-                Console.WriteLine("WAITING FOR ACCEPT");
+                return "WAITING FOR ACCEPT";
             }
             else
             {
-                Console.WriteLine("INVALID USERNAME");
+                return "INVALID USERNAME";
             }
         }
 
-        public void ApproveMembership(string adminUsername, string username)
+        public string ApproveMembership(string adminUsername, string username)
         {
             var adminUser = FindUserByUsername(adminUsername);
             var user = FindUserByUsername(username);
 
             if (adminUser == null)
             {
-                Console.WriteLine("INVALID USERNAME");
-                return;
+                return "INVALID USERNAME";
             }
 
             if (adminUser.UserStatus != Status.ACTIVE)
             {
-                Console.WriteLine("WAITING FOR ADMIN");
-                return;
+                return "WAITING FOR ADMIN";
             }
 
             if (adminUser.UserRole != Role.ADMIN)
             {
-                Console.WriteLine($"{adminUsername} IS NOT ADMIN");
-                return;
+                return $"{adminUsername} IS NOT ADMIN";
             }
 
             if (user == null)
             {
-                Console.WriteLine("INVALID USERNAME");
-                return;
+                return "INVALID USERNAME";
             }
 
             if (user.UserStatus == Status.ACTIVE)
             {
-                Console.WriteLine($"{username} IS ACTIVE");
-                return;
+                return $"{username} IS ACTIVE";
             }
 
             user.UserStatus = Status.ACTIVE;
-            Console.WriteLine($"{username} ACTIVATED");
+            return $"{username} ACTIVATED";
         }
 
-        public void RejectMembership(string adminUsername, string username)
+        public string RejectMembership(string adminUsername, string username)
         {
             var adminUser = FindUserByUsername(adminUsername);
             var user = FindUserByUsername(username);
 
             if (adminUser == null)
             {
-                Console.WriteLine("INVALID USERNAME");
-                return;
+                return "INVALID USERNAME";
             }
 
             if (adminUser.UserStatus != Status.ACTIVE)
             {
-                Console.WriteLine("WAITING FOR ADMIN");
-                return;
+                return "WAITING FOR ADMIN";
             }
 
             if (adminUser.UserRole != Role.ADMIN)
             {
-                Console.WriteLine($"{adminUsername} IS NOT ADMIN");
-                return;
+                return $"{adminUsername} IS NOT ADMIN";
             }
 
             if (user == null)
             {
-                Console.WriteLine("INVALID USERNAME");
-                return;
+                return "INVALID USERNAME";
             }
 
             if (user.UserStatus == Status.ACTIVE)
             {
-                Console.WriteLine($"{username} IS ACTIVE");
-                return;
+                return $"{username} IS ACTIVE";
             }
 
             users.Remove(user);
-            Console.WriteLine($"{username} REJECTED");
+            return $"{username} REJECTED";
         }
 
-        public void GetWaitingList(string username)
+        public string GetWaitingList(string username)
         {
             var user = FindUserByUsername(username);
 
             if (user == null)
             {
-                Console.WriteLine("INVALID USERNAME");
-                return;
+                return "INVALID USERNAME";
             }
 
             if (user.UserStatus == Status.INACTIVE)
             {
-                Console.WriteLine("WAITING FOR ADMIN");
-                return;
+                return "WAITING FOR ADMIN";
             }
 
             if (user.UserRole == Role.MEMBER)
             {
-                Console.WriteLine("NOT ENOUGH ACCESS");
-                return;
+                return "NOT ENOUGH ACCESS";
             }
 
             var waitingUsers = users
@@ -142,70 +128,63 @@ namespace College.Services
 
             if (waitingUsers.Count == 0)
             {
-                Console.WriteLine("NO USER");
-                return;
+                return "NO USER";
             }
 
-            Console.WriteLine(string.Join(" ", waitingUsers));
+            return string.Join(" ", waitingUsers);
         }
 
-        public void ChangeRole(string adminUsername, string username, string newRole)
+        public string ChangeRole(string adminUsername, string username, string newRole)
         {
             var adminUser = FindUserByUsername(adminUsername);
             var user = FindUserByUsername(username);
 
             if (adminUser == null || user == null)
             {
-                Console.WriteLine("INVALID USERNAME");
-                return;
+                return "INVALID USERNAME";
             }
 
             if (adminUser.UserStatus == Status.INACTIVE || user.UserStatus == Status.INACTIVE)
             {
-                Console.WriteLine("WAITING FOR ADMIN");
-                return;
+                return "WAITING FOR ADMIN";
             }
 
             if (!Enum.TryParse(newRole.ToUpper(), out Role role) || !Enum.IsDefined(typeof(Role), role))
             {
-                Console.WriteLine("INVALID ROLE");
-                return;
+                return "INVALID ROLE";
             }
 
             if (adminUser.UserRole < role || adminUser.UserRole == role)
             {
-                Console.WriteLine("NOT ENOUGH ACCESS");
-                return;
+                return "NOT ENOUGH ACCESS";
             }
 
             if (adminUser.UserRole < user.UserRole || adminUser.UserRole == user.UserRole)
             {
-                Console.WriteLine("INVALID CHANGEROLE");
-                return;
+                return "INVALID CHANGEROLE";
             }
 
             if (user.UserRole == role)
             {
-                Console.WriteLine("ALREADY HAS THIS ROLE");
-                return;
+                return "ALREADY HAS THIS ROLE";
             }
 
             user.UserRole = role;
-            Console.WriteLine("ROLE CHANGED SUCCESSFULLY");
+            return "ROLE CHANGED SUCCESSFULLY";
         }
 
-        public void GetUserStatus(string username)
+        public string GetUserStatus(string username)
         {
             var user = FindUserByUsername(username);
             if (user != null)
             {
-                Console.WriteLine(user.UserStatus == Status.ACTIVE
+                return user.UserStatus == Status.ACTIVE
                     ? $"username: {username} role: {user.UserRole} active"
-                    : $"username: {username} role: {user.UserRole} not active");
+                    : $"username: {username} role: {user.UserRole} not active";
             }
             else
             {
-                Console.WriteLine("INVALID USERNAME");
+                return "INVALID USERNAME";
             }
             
         }
