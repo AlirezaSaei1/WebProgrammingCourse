@@ -112,7 +112,42 @@ namespace College.Services
             Console.WriteLine($"{username} REJECTED");
         }
 
-        public List<User> GetWaitingList() { return null; }
+        public void GetWaitingList(string username)
+        {
+            var user = FindUserByUsername(username);
+
+            if (user == null)
+            {
+                Console.WriteLine("INVALID USERNAME");
+                return;
+            }
+
+            if (user.UserStatus == Status.INACTIVE)
+            {
+                Console.WriteLine("WAITING FOR ADMIN");
+                return;
+            }
+
+            if (user.UserRole == Role.MEMBER)
+            {
+                Console.WriteLine("NOT ENOUGH ACCESS");
+                return;
+            }
+
+            var waitingUsers = users
+                .Where(u => u.UserStatus == Status.INACTIVE)
+                .OrderBy(u => u.Username)
+                .Select(u => u.Username)
+                .ToList();
+
+            if (waitingUsers.Count == 0)
+            {
+                Console.WriteLine("NO USER");
+                return;
+            }
+
+            Console.WriteLine(string.Join(" ", waitingUsers));
+        }
 
         public void ChangeRole(User adminUser, User user, Role newRole) {}
 

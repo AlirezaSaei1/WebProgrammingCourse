@@ -44,6 +44,8 @@ namespace College
                         userService.RejectMembership(username1, username2);
                         break;
                     case "QUEUE":
+                        username = parts[1];
+                        userService.GetWaitingList(username);
                         break;
                     case "CHANGEROLE":
                         break;
