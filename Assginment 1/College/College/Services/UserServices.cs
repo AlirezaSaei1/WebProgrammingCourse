@@ -73,7 +73,44 @@ namespace College.Services
             Console.WriteLine($"{username} ACTIVATED");
         }
 
-        public void RejectMembership(User adminUser, User user) {}
+        public void RejectMembership(string adminUsername, string username)
+        {
+            var adminUser = FindUserByUsername(adminUsername);
+            var user = FindUserByUsername(username);
+
+            if (adminUser == null)
+            {
+                Console.WriteLine("INVALID USERNAME");
+                return;
+            }
+
+            if (adminUser.UserStatus != Status.ACTIVE)
+            {
+                Console.WriteLine("WAITING FOR ADMIN");
+                return;
+            }
+
+            if (adminUser.UserRole != Role.ADMIN)
+            {
+                Console.WriteLine($"{adminUsername} IS NOT ADMIN");
+                return;
+            }
+
+            if (user == null)
+            {
+                Console.WriteLine("INVALID USERNAME");
+                return;
+            }
+
+            if (user.UserStatus == Status.ACTIVE)
+            {
+                Console.WriteLine($"{username} IS ACTIVE");
+                return;
+            }
+
+            users.Remove(user);
+            Console.WriteLine($"{username} REJECTED");
+        }
 
         public List<User> GetWaitingList() { return null; }
 

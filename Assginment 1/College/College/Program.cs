@@ -39,6 +39,9 @@ namespace College
                         userService.ApproveMembership(username1, username2);
                         break;
                     case "REJECT":
+                        username1 = parts[1];
+                        username2 = parts[2];
+                        userService.RejectMembership(username1, username2);
                         break;
                     case "QUEUE":
                         break;
