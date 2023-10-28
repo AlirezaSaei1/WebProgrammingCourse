@@ -21,6 +21,8 @@ namespace College
                 
                 //Command Parts
                 string username;
+                string username1;
+                string username2;
                 string role;
                 string status;
                 
@@ -32,6 +34,9 @@ namespace College
                         userService.RegisterUser(username, role);
                         break;
                     case "APPROVE":
+                        username1 = parts[1];
+                        username2 = parts[2];
+                        userService.ApproveMembership(username1, username2);
                         break;
                     case "REJECT":
                         break;
