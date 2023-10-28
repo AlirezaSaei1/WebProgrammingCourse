@@ -42,7 +42,21 @@ namespace College.Services
 
         public void ChangeRole(User adminUser, User user, Role newRole) {}
 
-        public void GetUserStatus(string username) {}
+        public void GetUserStatus(string username)
+        {
+            var user = FindUserByUsername(username);
+            if (user != null)
+            {
+                Console.WriteLine(user.UserStatus == Status.ACTIVE
+                    ? $"username: {username} role: {user.UserRole} active"
+                    : $"username: {username} role: {user.UserRole} not active");
+            }
+            else
+            {
+                Console.WriteLine("INVALID USERNAME");
+            }
+            
+        }
 
         private User FindUserByUsername(string username)
         {
