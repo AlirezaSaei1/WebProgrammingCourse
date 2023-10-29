@@ -22,9 +22,6 @@ namespace College
                 // Boolean to check input length
                 var hasInvalidLength = false;
 
-                // Variable to store command results
-                string result;
-                
                 // Check Length of Each Part
                 foreach (var part in parts)
                 {
@@ -37,7 +34,7 @@ namespace College
                 // Skip to the next iteration of the loop
                 if (hasInvalidLength) { continue; }
 
-                result = parts?[0] switch
+                var result = parts?[0] switch
                 {
                     "REGISTER" => userService.RegisterUser(parts[1], parts[2]),
                     "APPROVE" => userService.ApproveMembership(parts[1], parts[2]),
