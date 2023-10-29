@@ -20,7 +20,7 @@ namespace College.Services
                 return "INVALID USERNAME";
             }
 
-            if (!Enum.TryParse(role, out Role parsedRole))
+            if (!Enum.TryParse(role, ignoreCase:true, out Role parsedRole))
             {
                 return "INVALID ROLE";
             }
@@ -140,7 +140,7 @@ namespace College.Services
                 return "WAITING FOR ADMIN";
             }
 
-            if (!Enum.TryParse(newRole.ToUpper(), out Role role) || !Enum.IsDefined(typeof(Role), role))
+            if (!Enum.TryParse(newRole, ignoreCase:true, out Role role) || !Enum.IsDefined(typeof(Role), role))
             {
                 return "INVALID ROLE";
             }
