@@ -1,9 +1,10 @@
-﻿using College.Models;
+﻿using College.Interfaces;
+using College.Models;
 using College.Models.Enums;
 
 namespace College.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly List<User> _users;
 
@@ -14,22 +15,18 @@ namespace College.Services
 
         public string RegisterUser(string username, string role)
         {
-            var user = FindUserByUsername(username);
-
-            if (user == null)
-            {
-                if (!Enum.TryParse(role, out Role parsedRole))
-                {
-                    return "INVALID ROLE";
-                }
-                
-                _users.Add(new User(username, parsedRole, Status.INACTIVE));
-                return "WAITING FOR ACCEPT";
-            }
-            else
+            if (FindUserByUsername(username) != null)
             {
                 return "INVALID USERNAME";
             }
+
+            if (!Enum.TryParse(role, out Role parsedRole))
+            {
+                return "INVALID ROLE";
+            }
+
+            _users.Add(new User(username, parsedRole, Status.INACTIVE));
+            return "WAITING FOR ACCEPT";
         }
 
         public string ApproveMembership(string adminUsername, string username)
@@ -183,7 +180,7 @@ namespace College.Services
             
         }
 
-        private User FindUserByUsername(string username)
+        public User? FindUserByUsername(string username)
         {
             return _users.Find(u => u.Username == username);
         }
