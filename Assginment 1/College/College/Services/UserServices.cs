@@ -5,12 +5,11 @@ namespace College.Services
 {
     public class UserService
     {
-        private List<User> users;
+        private readonly List<User> _users;
 
         public UserService()
         {
-            users = new List<User>();
-            users.Add(new User("ADMIN", Role.ADMIN, Status.ACTIVE));
+            _users = new List<User> { new User("ADMIN", Role.ADMIN, Status.ACTIVE) };
         }
 
         public string RegisterUser(string username, string role)
@@ -24,7 +23,7 @@ namespace College.Services
                     return "INVALID ROLE";
                 }
                 
-                users.Add(new User(username, parsedRole, Status.INACTIVE));
+                _users.Add(new User(username, parsedRole, Status.INACTIVE));
                 return "WAITING FOR ACCEPT";
             }
             else
@@ -97,7 +96,7 @@ namespace College.Services
                 return $"{username} IS ACTIVE";
             }
 
-            users.Remove(user);
+            _users.Remove(user);
             return $"{username} REJECTED";
         }
 
@@ -120,18 +119,13 @@ namespace College.Services
                 return "NOT ENOUGH ACCESS";
             }
 
-            var waitingUsers = users
+            var waitingUsers = _users
                 .Where(u => u.UserStatus == Status.INACTIVE)
                 .OrderBy(u => u.Username)
                 .Select(u => u.Username)
                 .ToList();
 
-            if (waitingUsers.Count == 0)
-            {
-                return "NO USER";
-            }
-
-            return string.Join(" ", waitingUsers);
+            return waitingUsers.Count == 0 ? "NO USER" : string.Join(" ", waitingUsers);
         }
 
         public string ChangeRole(string adminUsername, string username, string newRole)
@@ -154,12 +148,12 @@ namespace College.Services
                 return "INVALID ROLE";
             }
 
-            if (adminUser.UserRole < role || adminUser.UserRole == role)
+            if (adminUser.UserRole < user.UserRole || adminUser.UserRole == user.UserRole)
             {
                 return "NOT ENOUGH ACCESS";
             }
 
-            if (adminUser.UserRole < user.UserRole || adminUser.UserRole == user.UserRole)
+            if (adminUser.UserRole < role)
             {
                 return "INVALID CHANGEROLE";
             }
@@ -191,7 +185,7 @@ namespace College.Services
 
         private User FindUserByUsername(string username)
         {
-            return users.Find(u => u.Username == username);
+            return _users.Find(u => u.Username == username);
         }
     }
 }
