@@ -19,33 +19,34 @@ namespace College
                 var input = Console.ReadLine();
                 var parts = input?.Split(" ");
                 
+                // Boolean to check input length
+                var hasInvalidLength = false;
+
                 // Variable to store command results
                 string result;
                 
-                switch (parts?[0])
+                // Check Length of Each Part
+                foreach (var part in parts)
                 {
-                    case "REGISTER":
-                        result = userService.RegisterUser(parts[1], parts[2]);
-                        break;
-                    case "APPROVE":
-                        result = userService.ApproveMembership(parts[1], parts[2]);
-                        break;
-                    case "REJECT":
-                        result = userService.RejectMembership(parts[1], parts[2]);
-                        break;
-                    case "QUEUE":
-                        result = userService.GetWaitingList(parts[1]);
-                        break;
-                    case "CHANGEROLE":
-                        result = userService.ChangeRole(parts[1], parts[2], parts[3]);
-                        break;
-                    case "STATUS":
-                        result = userService.GetUserStatus(parts[1]);
-                        break;
-                    default:
-                        result = "INVALID COMMAND";
-                        break;
+                    if (part.Length is >= 1 and <= 10) continue;
+                    hasInvalidLength = true;
+                    Console.WriteLine($"Invalid part length: {part}. Parts should be between 1 and 10 characters.");
+                    break;
                 }
+                
+                // Skip to the next iteration of the loop
+                if (hasInvalidLength) { continue; }
+
+                result = parts?[0] switch
+                {
+                    "REGISTER" => userService.RegisterUser(parts[1], parts[2]),
+                    "APPROVE" => userService.ApproveMembership(parts[1], parts[2]),
+                    "REJECT" => userService.RejectMembership(parts[1], parts[2]),
+                    "QUEUE" => userService.GetWaitingList(parts[1]),
+                    "CHANGEROLE" => userService.ChangeRole(parts[1], parts[2], parts[3]),
+                    "STATUS" => userService.GetUserStatus(parts[1]),
+                    _ => "INVALID COMMAND"
+                };
                 Console.WriteLine(result);
             }
         }
