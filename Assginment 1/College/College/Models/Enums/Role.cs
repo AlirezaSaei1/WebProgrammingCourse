@@ -2,8 +2,8 @@
 {
     public enum Role
     {
-        ADMIN = 3,
-        MENTOR= 2,
-        MEMBER = 1
+        Admin = 3,
+        Mentor= 2,
+        Member = 1
     }
 }

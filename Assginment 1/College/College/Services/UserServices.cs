@@ -10,7 +10,7 @@ namespace College.Services
 
         public UserService()
         {
-            _users = new List<User> { new User("ADMIN", Role.ADMIN, Status.ACTIVE) };
+            _users = new List<User> { new User("ADMIN", Role.Admin, Status.Active) };
         }
 
         public string RegisterUser(string username, string role)
@@ -25,7 +25,7 @@ namespace College.Services
                 return "INVALID ROLE";
             }
 
-            _users.Add(new User(username, parsedRole, Status.INACTIVE));
+            _users.Add(new User(username, parsedRole, Status.Inactive));
             return "WAITING FOR ACCEPT";
         }
 
@@ -39,12 +39,12 @@ namespace College.Services
                 return "INVALID USERNAME";
             }
 
-            if (adminUser.UserStatus != Status.ACTIVE)
+            if (adminUser.UserStatus != Status.Active)
             {
                 return "WAITING FOR ADMIN";
             }
 
-            if (adminUser.UserRole != Role.ADMIN)
+            if (adminUser.UserRole != Role.Admin)
             {
                 return $"{adminUsername} IS NOT ADMIN";
             }
@@ -54,12 +54,12 @@ namespace College.Services
                 return "INVALID USERNAME";
             }
 
-            if (user.UserStatus == Status.ACTIVE)
+            if (user.UserStatus == Status.Active)
             {
                 return $"{username} IS ACTIVE";
             }
 
-            user.UserStatus = Status.ACTIVE;
+            user.UserStatus = Status.Active;
             return $"{username} ACTIVATED";
         }
 
@@ -73,12 +73,12 @@ namespace College.Services
                 return "INVALID USERNAME";
             }
 
-            if (adminUser.UserStatus != Status.ACTIVE)
+            if (adminUser.UserStatus != Status.Active)
             {
                 return "WAITING FOR ADMIN";
             }
 
-            if (adminUser.UserRole != Role.ADMIN)
+            if (adminUser.UserRole != Role.Admin)
             {
                 return $"{adminUsername} IS NOT ADMIN";
             }
@@ -88,7 +88,7 @@ namespace College.Services
                 return "INVALID USERNAME";
             }
 
-            if (user.UserStatus == Status.ACTIVE)
+            if (user.UserStatus == Status.Active)
             {
                 return $"{username} IS ACTIVE";
             }
@@ -106,18 +106,18 @@ namespace College.Services
                 return "INVALID USERNAME";
             }
 
-            if (user.UserStatus == Status.INACTIVE)
+            if (user.UserStatus == Status.Inactive)
             {
                 return "WAITING FOR ADMIN";
             }
 
-            if (user.UserRole == Role.MEMBER)
+            if (user.UserRole == Role.Member)
             {
                 return "NOT ENOUGH ACCESS";
             }
 
             var waitingUsers = _users
-                .Where(u => u.UserStatus == Status.INACTIVE)
+                .Where(u => u.UserStatus == Status.Inactive)
                 .OrderBy(u => u.Username)
                 .Select(u => u.Username)
                 .ToList();
@@ -135,7 +135,7 @@ namespace College.Services
                 return "INVALID USERNAME";
             }
 
-            if (adminUser.UserStatus == Status.INACTIVE || user.UserStatus == Status.INACTIVE)
+            if (adminUser.UserStatus == Status.Inactive || user.UserStatus == Status.Inactive)
             {
                 return "WAITING FOR ADMIN";
             }
@@ -169,7 +169,7 @@ namespace College.Services
             var user = FindUserByUsername(username);
             if (user != null)
             {
-                return user.UserStatus == Status.ACTIVE
+                return user.UserStatus == Status.Active
                     ? $"username: {username} role: {user.UserRole} active"
                     : $"username: {username} role: {user.UserRole} not active";
             }
