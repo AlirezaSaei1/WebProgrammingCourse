@@ -1,3 +1,19 @@
+/* ------------------- Fonts ------------------- */
+@font-face {
+    font-family: "DigitalNumbers";
+    src: url('DigitalNumbers.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "RobotoCondensed";
+    src: url('RobotoCondensed.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ------------------- Style ------------------- */
 body {
     margin: 0;
     font-size: 16px;
@@ -5,6 +21,9 @@ body {
 
 .key {
     font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #result {
@@ -16,3 +35,7 @@ body {
     flex-direction: column;
     justify-content: center;
 }
+
+
+
+
