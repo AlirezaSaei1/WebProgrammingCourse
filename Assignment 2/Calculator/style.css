@@ -49,4 +49,11 @@ body {
     flex-direction: column;
 }
 
+#result {
+    height: 28%;
+    width: 100%;
+    background-color: #EEE;
+    color: #444;
+    font-family: "DigitalNumbers", sans-serif;
+}
 
