@@ -65,4 +65,22 @@ body {
     display: flex;
 }
 
+#nums {
+    height: 100%;
+    width: 54%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+#nums .key:nth-child(odd) {
+    background-color: #095057;
+    color: white;
+}
+
+#nums .key:nth-child(even) {
+    background-color: #19676E;
+    color: white;
+}
+
 
