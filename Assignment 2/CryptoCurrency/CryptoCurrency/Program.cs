@@ -2,7 +2,7 @@
 {
     public class Program
     {
-        public static void main(string[] args)
+        public static void Main(string[] args)
         {
             // Line 1
             var firstLine = Console.ReadLine().Split(' ');

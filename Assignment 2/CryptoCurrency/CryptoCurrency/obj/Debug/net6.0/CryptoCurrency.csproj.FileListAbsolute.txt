@@ -1,0 +1,15 @@
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\CryptoCurrency.csproj.AssemblyReference.cache
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\CryptoCurrency.GeneratedMSBuildEditorConfig.editorconfig
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\CryptoCurrency.AssemblyInfoInputs.cache
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\CryptoCurrency.AssemblyInfo.cs
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\CryptoCurrency.csproj.CoreCompileInputs.cache
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\bin\Debug\net6.0\CryptoCurrency.exe
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\bin\Debug\net6.0\CryptoCurrency.deps.json
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\bin\Debug\net6.0\CryptoCurrency.runtimeconfig.json
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\bin\Debug\net6.0\CryptoCurrency.dll
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\bin\Debug\net6.0\ref\CryptoCurrency.dll
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\bin\Debug\net6.0\CryptoCurrency.pdb
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\CryptoCurrency.dll
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\ref\CryptoCurrency.dll
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\CryptoCurrency.pdb
+F:\University 7\Web\WebProgrammingCourse\Assignment 2\CryptoCurrency\CryptoCurrency\obj\Debug\net6.0\CryptoCurrency.genruntimeconfig.cache
