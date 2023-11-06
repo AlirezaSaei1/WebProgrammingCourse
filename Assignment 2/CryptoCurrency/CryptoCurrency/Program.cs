@@ -30,7 +30,7 @@ namespace CryptoCurrency
                 var command = message[1];
                 var id = message[2];
                 var type = message[3];
-                Enum.TryParse(type, out OrderType orderType);
+                Enum.TryParse(type, ignoreCase:true, out OrderType orderType);
                 var coin = message[4];
                 var price = decimal.Parse(message[5]);
                 var size = int.Parse(message[6]);
