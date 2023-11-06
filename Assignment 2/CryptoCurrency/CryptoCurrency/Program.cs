@@ -1,4 +1,6 @@
-﻿using CryptoCurrency.Services;
+﻿using CryptoCurrency.Models;
+using CryptoCurrency.Models.Enums;
+using CryptoCurrency.Services;
 
 namespace CryptoCurrency
 {
@@ -24,13 +26,32 @@ namespace CryptoCurrency
             for (var i = 0; i < messageCount; i++)
             {  
                 var message = Console.ReadLine()!.Split(' ');
-                var time = message[0];
+                var time = int.Parse(message[0]);
                 var command = message[1];
                 var id = message[2];
                 var type = message[3];
+                Enum.TryParse(type, out OrderType orderType);
                 var coin = message[4];
                 var price = decimal.Parse(message[5]);
                 var size = int.Parse(message[6]);
+                
+                var order = new Order(time, id, orderType, coin, price, size);
+                
+                if (command == "ADD")
+                {
+                    if (orderType == OrderType.Buy)
+                    {
+                        orderBookService.ProcessBuyOrder(order, target);
+                    }
+                    else if (orderType == OrderType.Sell)
+                    {
+                        orderBookService.ProcessSellOrder(order, target);
+                    }
+                }
+                else if (command == "REM")
+                {
+                    orderBookService.RemoveOrder(order);
+                }
             }
         }
     }
