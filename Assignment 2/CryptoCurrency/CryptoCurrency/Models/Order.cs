@@ -22,5 +22,10 @@ namespace CryptoCurrency.Models
             Size = size;
             RemainingSize = size;
         }
+        
+        public int CompareTo(Order? other)
+        {
+            return other == null ? 1 : Time.CompareTo(other.Time);
+        }
     }
 }
