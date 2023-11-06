@@ -2,7 +2,7 @@
 
 namespace CryptoCurrency.Models
 {
-    class Order
+    public class Order
     {
         public int Time { get; set; }
         public string Id { get; set; }
