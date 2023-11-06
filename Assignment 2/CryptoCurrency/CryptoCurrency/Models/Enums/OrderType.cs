@@ -1,6 +1,6 @@
 ﻿namespace CryptoCurrency.Models.Enums
 {
-    public enum Type
+    public enum OrderType
     {
         Buy,
         Sell
