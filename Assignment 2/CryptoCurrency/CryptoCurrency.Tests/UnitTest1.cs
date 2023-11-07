@@ -130,5 +130,43 @@ namespace CryptoCurrency.Tests
 
             Assert.Equal(expectedOutput, sw.ToString());
         }
+        
+        [Fact]
+        public void TestProcessOrders5()
+        {
+            // Arrange
+            var orderBookService = new OrderBookService();
+
+            var input = "10 1\ncoin_00\n11\n" +
+                        "10000 ADD order_001 sell coin_00 14991 8\n" +
+                        "10001 ADD order_002 buy coin_00 15994 9\n" +
+                        "10002 ADD order_003 sell coin_00 14906 8\n" +
+                        "10003 ADD order_004 sell coin_00 14829 5\n" +
+                        "10004 REM order_001 8\n" +
+                        "10005 ADD order_005 sell coin_00 14740 7\n" +
+                        "10006 ADD order_006 buy coin_00 15974 8\n" +
+                        "10007 ADD order_007 buy coin_00 15946 6\n" +
+                        "10008 REM order_004 5\n" +
+                        "10009 REM order_002 9\n" +
+                        "10010 ADD order_008 buy coin_00 15884 9\n";
+
+            // Create a StringWriter to capture the program's output
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            Program.ProcessOrders(new StringReader(input));
+
+            // Assert
+            var expectedOutput = "10002 buy coin_00 149230.00\n" +
+                                 "10003 buy coin_00 148675.00\n" +
+                                 "10005 buy coin_00 147667.00\n" +
+                                 "10006 sell coin_00 159920.00\n" +
+                                 "10008 buy coin_00 147898.00\n" +
+                                 "10009 sell coin_00 159684.00\n";
+
+            Assert.Equal(expectedOutput, sw.ToString());
+        }
+
     }
 }
