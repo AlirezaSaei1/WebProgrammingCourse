@@ -49,20 +49,23 @@ namespace CryptoCurrency
                     order = new Order(time, id, orderType, coin, price, size);
                 }
                 
-                if (command == "ADD")
+                switch (command)
                 {
-                    if (orderType == OrderType.Buy)
-                    {
+                    case "ADD" when orderType == OrderType.Buy:
                         orderBookService.ProcessBuyOrder(order, target);
-                    }
-                    else if (orderType == OrderType.Sell)
+                        break;
+                    case "ADD":
                     {
-                        orderBookService.ProcessSellOrder(order, target);
+                        if (orderType == OrderType.Sell)
+                        {
+                            orderBookService.ProcessSellOrder(order, target);
+                        }
+
+                        break;
                     }
-                }
-                else if (command == "REM")
-                {
-                    orderBookService.RemoveOrder(order);
+                    case "REM":
+                        orderBookService.RemoveOrder(order);
+                        break;
                 }
             }
         }
