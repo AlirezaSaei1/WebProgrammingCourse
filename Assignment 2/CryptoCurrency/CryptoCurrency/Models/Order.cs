@@ -8,11 +8,11 @@ namespace CryptoCurrency.Models
         public string Id { get; set; }
         public OrderType Type { get; set; }
         public string Coin { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public int Size { get; set; }
         public int RemainingSize { get; set; }
 
-        public Order(int time, string id, OrderType type, string coin, decimal price, int size)
+        public Order(int time, string id, OrderType type, string coin, double price, int size)
         {
             Time = time;
             Id = id;

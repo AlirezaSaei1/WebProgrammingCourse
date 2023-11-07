@@ -5,50 +5,50 @@ namespace CryptoCurrency.Services
 {
     public class OrderBookService: IOrderBook
     {
-        private readonly Dictionary<string, List<Order>> _buyOrders = new Dictionary<string, List<Order>>();
-        private readonly Dictionary<string, int> _totalBuy = new Dictionary<string, int>();
-        private readonly Dictionary<string, List<Order>> _sellOrders = new Dictionary<string, List<Order>>();
-        private readonly Dictionary<string, int> _totalSell = new Dictionary<string, int>();
+        private static readonly Dictionary<string, List<Order>> BuyOrders = new Dictionary<string, List<Order>>();
+        private static readonly Dictionary<string, int> TotalBuy = new Dictionary<string, int>();
+        private static readonly Dictionary<string, List<Order>> SellOrders = new Dictionary<string, List<Order>>();
+        private static readonly Dictionary<string, int> TotalSell = new Dictionary<string, int>();
     
         public void ProcessBuyOrder(Order order, int target)
         {
-            if (!_buyOrders.ContainsKey(order.Coin))
+            if (!BuyOrders.ContainsKey(order.Coin))
             {
-                _buyOrders[order.Coin] = new List<Order> { order };
-                _totalBuy[order.Coin] = order.Size;
+                BuyOrders[order.Coin] = new List<Order> { order };
+                TotalBuy[order.Coin] = order.Size;
             }
             else
             {
-                _buyOrders[order.Coin].Add(order);
-                _buyOrders[order.Coin].Sort();
-                _totalBuy[order.Coin] += order.Size;
+                BuyOrders[order.Coin].Add(order);
+                BuyOrders[order.Coin].Sort();
+                TotalBuy[order.Coin] += order.Size;
             }
-            CheckForCompletedOrders(order.Coin, target, "BUY");
+            CheckForCompletedOrders(order, target, "BUY");
         }
 
         public void ProcessSellOrder(Order order, int target)
         {
-            if (!_sellOrders.ContainsKey(order.Coin))
+            if (!SellOrders.ContainsKey(order.Coin))
             {
-                _sellOrders[order.Coin] = new List<Order>{ order };
-                _totalSell[order.Coin] = order.Size;
+                SellOrders[order.Coin] = new List<Order>{ order };
+                TotalSell[order.Coin] = order.Size;
             }
             else
             {
-                _sellOrders[order.Coin].Add(order);
-                _sellOrders[order.Coin].Sort();
-                _totalSell[order.Coin] += order.Size;
+                SellOrders[order.Coin].Add(order);
+                SellOrders[order.Coin].Sort();
+                TotalSell[order.Coin] += order.Size;
             }
-            CheckForCompletedOrders(order.Coin, target, "SELL");
+            CheckForCompletedOrders(order, target, "SELL");
         }
 
         public void RemoveOrder(Order order)
         {
-            if (_sellOrders.ContainsKey(order.Coin))
+            if (SellOrders.ContainsKey(order.Coin))
             {
                 
             }
-            else if (_buyOrders.ContainsKey(order.Coin))
+            else if (BuyOrders.ContainsKey(order.Coin))
             {
                 
             }
@@ -58,15 +58,47 @@ namespace CryptoCurrency.Services
             }
         }
 
-        private static void CheckForCompletedOrders(string coin, int target, string type)
+        private static void CheckForCompletedOrders(Order order, int target, string type)
         {
             if (type == "BUY")
             {
-             
+                 
             }
             else if (type == "SELL")
             {
-                
+                if (TotalSell[order.Coin] >= target)
+                {
+                    var money = 0.0;
+                    var temp = target;
+                    while (temp > 0)
+                    {
+                        var index = -1;
+                        double minimumPrice = 200001;
+                        for (int j = 0; j < SellOrders[order.Coin].Count; j++)
+                        {
+                            if (SellOrders[order.Coin][j].RemainingSize > 0 && SellOrders[order.Coin][j].Price < minimumPrice)
+                            {
+                                index = j;
+                                minimumPrice = SellOrders[order.Coin][j].Price;
+                            }
+                        }
+                        if (SellOrders[order.Coin][index].Size >= temp)
+                        {
+                            SellOrders[order.Coin][index].RemainingSize -= temp;
+                            money += SellOrders[order.Coin][index].Price * temp;
+                            TotalSell[order.Coin] -= temp;
+                            temp = 0;
+                        }
+                        else
+                        {
+                            money = SellOrders[order.Coin][index].Price * SellOrders[order.Coin][index].RemainingSize;
+                            temp -= SellOrders[order.Coin][index].RemainingSize;
+                            TotalSell[order.Coin] -= SellOrders[order.Coin][index].RemainingSize;
+                            SellOrders[order.Coin][index].RemainingSize = 0;
+                        }
+                    }
+                    Console.WriteLine($"{order.Time} buy {order.Coin} {money.ToString("0.00")}");
+                }
             }
             else
             {
