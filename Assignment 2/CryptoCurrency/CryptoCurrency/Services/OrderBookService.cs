@@ -129,7 +129,7 @@ namespace CryptoCurrency.Services
             while (temp > 0)
             {
                 var index = -1;
-                double minimumPrice = 200001;
+                double minimumPrice = 222222;
                 for (var j = 0; j < SellOrders[order.Coin].Count; j++)
                 {
                     if (SellOrders[order.Coin][j].RemainingSize <= 0 ||
