@@ -29,13 +29,25 @@ namespace CryptoCurrency
                 var time = int.Parse(message[0]);
                 var command = message[1];
                 var id = message[2];
-                var type = message[3];
-                Enum.TryParse(type, ignoreCase:true, out OrderType orderType);
-                var coin = message[4];
-                var price = float.Parse(message[5]);
-                var size = int.Parse(message[6]);
+
+                Order order;
+                OrderType orderType;
                 
-                var order = new Order(time, id, orderType, coin, price, size);
+                if (command == "REM")
+                {
+                    var size = int.Parse(message[3]); 
+                    Enum.TryParse(command, ignoreCase:true, out orderType);
+                    order = new Order(time, id, orderType, size);
+                }
+                else
+                {
+                    var type = message[3];
+                    Enum.TryParse(type, ignoreCase:true, out orderType);
+                    var coin = message[4];
+                    var price = float.Parse(message[5]);
+                    var size = int.Parse(message[6]); 
+                    order = new Order(time, id, orderType, coin, price, size);
+                }
                 
                 if (command == "ADD")
                 {

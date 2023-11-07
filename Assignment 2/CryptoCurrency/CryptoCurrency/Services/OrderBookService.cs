@@ -3,13 +3,13 @@ using CryptoCurrency.Models;
 
 namespace CryptoCurrency.Services
 {
-    public class OrderBookService: IOrderBook
+    public class OrderBookService : IOrderBook
     {
         private static readonly Dictionary<string, List<Order>> BuyOrders = new Dictionary<string, List<Order>>();
         private static readonly Dictionary<string, int> TotalBuy = new Dictionary<string, int>();
         private static readonly Dictionary<string, List<Order>> SellOrders = new Dictionary<string, List<Order>>();
         private static readonly Dictionary<string, int> TotalSell = new Dictionary<string, int>();
-    
+
         public void ProcessBuyOrder(Order order, int target)
         {
             if (!BuyOrders.ContainsKey(order.Coin))
@@ -20,9 +20,11 @@ namespace CryptoCurrency.Services
             else
             {
                 BuyOrders[order.Coin].Add(order);
-                BuyOrders[order.Coin].Sort();
+                BuyOrders[order.Coin].Sort((order1, order2) => order1.Time.CompareTo(order2.Time));
+
                 TotalBuy[order.Coin] += order.Size;
             }
+
             CheckForCompletedBuyOrder(order, target);
         }
 
@@ -30,32 +32,22 @@ namespace CryptoCurrency.Services
         {
             if (!SellOrders.ContainsKey(order.Coin))
             {
-                SellOrders[order.Coin] = new List<Order>{ order };
+                SellOrders[order.Coin] = new List<Order> { order };
                 TotalSell[order.Coin] = order.Size;
             }
             else
             {
                 SellOrders[order.Coin].Add(order);
-                SellOrders[order.Coin].Sort();
+                SellOrders[order.Coin].Sort((order1, order2) => order1.Time.CompareTo(order2.Time));
                 TotalSell[order.Coin] += order.Size;
             }
+
             CheckForCompletedSellOrder(order, target);
         }
 
         public void RemoveOrder(Order order)
         {
-            if (SellOrders.ContainsKey(order.Coin))
-            {
-                
-            }
-            else if (BuyOrders.ContainsKey(order.Coin))
-            {
-                
-            }
-            else
-            {
-                Console.WriteLine("ID could not be found");
-            }
+
         }
 
         private static void CheckForCompletedBuyOrder(Order order, int target)
@@ -74,6 +66,7 @@ namespace CryptoCurrency.Services
                     index = j;
                     maximumPrice = BuyOrders[order.Coin][j].Price;
                 }
+
                 if (BuyOrders[order.Coin][index].Size >= temp)
                 {
                     BuyOrders[order.Coin][index].RemainingSize -= temp;
@@ -89,8 +82,10 @@ namespace CryptoCurrency.Services
                     BuyOrders[order.Coin][index].RemainingSize = 0;
                 }
             }
+
             Console.WriteLine($"{order.Time} sell {order.Coin} {price.ToString("0.00")}");
         }
+
         private static void CheckForCompletedSellOrder(Order order, int target)
         {
             if (TotalSell[order.Coin] < target) return;
@@ -107,6 +102,7 @@ namespace CryptoCurrency.Services
                     index = j;
                     minimumPrice = SellOrders[order.Coin][j].Price;
                 }
+
                 if (SellOrders[order.Coin][index].Size >= temp)
                 {
                     SellOrders[order.Coin][index].RemainingSize -= temp;
@@ -122,7 +118,8 @@ namespace CryptoCurrency.Services
                     SellOrders[order.Coin][index].RemainingSize = 0;
                 }
             }
+
             Console.WriteLine($"{order.Time} buy {order.Coin} {price.ToString("0.00")}");
         }
-    }   
+    }
 }
