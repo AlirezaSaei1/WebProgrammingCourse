@@ -64,7 +64,7 @@ namespace CryptoCurrency
                         break;
                     }
                     case "REM":
-                        orderBookService.RemoveOrder(order);
+                        orderBookService.RemoveOrder(order, target);
                         break;
                 }
             }

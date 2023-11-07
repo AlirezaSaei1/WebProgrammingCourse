@@ -45,9 +45,44 @@ namespace CryptoCurrency.Services
             CheckForCompletedSellOrder(order, target);
         }
 
-        public void RemoveOrder(Order order)
+        public void RemoveOrder(Order order, int target)
         {
+            var allBuyOrders = BuyOrders.Values.SelectMany(orders => orders).ToList();
+            var buyOrderToRemove = allBuyOrders.FirstOrDefault(o => o.Id == order.Id);
 
+            if (buyOrderToRemove == null)
+            {
+                var allSellOrders = BuyOrders.Values.SelectMany(orders => orders).ToList();
+                var sellOrderToRemove = allSellOrders.FirstOrDefault(o => o.Id == order.Id);
+
+                if (sellOrderToRemove == null)
+                {
+                    return;
+                }
+                else
+                {
+                    if (TotalBuy[sellOrderToRemove.Coin] - order.Size < target)
+                    {
+                        Console.WriteLine($"{order.Time} sell {sellOrderToRemove.Coin} NA");
+                    }
+                    else
+                    {
+                        TotalBuy[sellOrderToRemove.Coin] -= order.Size;    
+                    }
+                }
+            }
+            else
+            {
+                if (TotalBuy[buyOrderToRemove.Coin] - order.Size < target)
+                {
+                    Console.WriteLine($"{order.Time} sell {buyOrderToRemove.Coin} NA");
+                }
+                else
+                {
+                    TotalBuy[buyOrderToRemove.Coin] -= order.Size;    
+                }
+                
+            }
         }
 
         private static void CheckForCompletedBuyOrder(Order order, int target)

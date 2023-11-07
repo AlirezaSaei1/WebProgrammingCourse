@@ -6,6 +6,6 @@ namespace CryptoCurrency.Interfaces
     {
         void ProcessBuyOrder(Order order, int target);
         void ProcessSellOrder(Order order, int target);
-        void RemoveOrder(Order order);
+        void RemoveOrder(Order order, int target);
     }  
 }
