@@ -23,7 +23,7 @@ namespace CryptoCurrency.Services
                 TotalBuy[order.Coin] += order.Size;
             }
             
-            BuyOrders[order.Coin].Sort((order1, order2) => order1.Time.CompareTo(order2.Time));
+            BuyOrders[order.Coin] = BuyOrders[order.Coin].OrderBy(o => o.Time).ToList();
             CheckForCompletedBuyOrder(order, target);
         }
 
@@ -40,7 +40,7 @@ namespace CryptoCurrency.Services
                 TotalSell[order.Coin] += order.Size;
             }
 
-            SellOrders[order.Coin].Sort((order1, order2) => order1.Time.CompareTo(order2.Time));
+            SellOrders[order.Coin] = SellOrders[order.Coin].OrderBy(o => o.Time).ToList();
             CheckForCompletedSellOrder(order, target);
         }
 
