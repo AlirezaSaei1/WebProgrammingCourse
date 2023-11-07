@@ -60,13 +60,13 @@ namespace CryptoCurrency.Services
                 }
                 else
                 {
-                    if (TotalBuy[sellOrderToRemove.Coin] - order.Size < target)
+                    if (TotalSell[sellOrderToRemove.Coin] - order.Size < target)
                     {
                         Console.WriteLine($"{order.Time} sell {sellOrderToRemove.Coin} NA");
                     }
                     else
                     {
-                        TotalBuy[sellOrderToRemove.Coin] -= order.Size;    
+                        TotalSell[sellOrderToRemove.Coin] -= order.Size;    
                     }
                 }
             }
@@ -130,7 +130,7 @@ namespace CryptoCurrency.Services
             while (temp > 0)
             {
                 var index = -1;
-                var minimumPrice = 222222.0;
+                var minimumPrice = float.PositiveInfinity;
                 
                 var sellOrders = SellOrders[order.Coin];
                 for (var j = 0; j < sellOrders.Count; j++)
