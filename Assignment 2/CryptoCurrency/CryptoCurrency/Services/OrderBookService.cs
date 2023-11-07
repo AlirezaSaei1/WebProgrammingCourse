@@ -93,12 +93,12 @@ namespace CryptoCurrency.Services
             {
                 var index = -1;
                 float maximumPrice = -1;
-                for (var j = 0; j < BuyOrders[order.Coin].Count; j++)
+                for (var i = 0; i < BuyOrders[order.Coin].Count; i++)
                 {
-                    if (BuyOrders[order.Coin][j].RemainingSize <= 0 ||
-                        !(BuyOrders[order.Coin][j].Price > maximumPrice)) continue;
-                    index = j;
-                    maximumPrice = BuyOrders[order.Coin][j].Price;
+                    if (BuyOrders[order.Coin][i].RemainingSize <= 0 ||
+                        !(BuyOrders[order.Coin][i].Price > maximumPrice)) continue;
+                    index = i;
+                    maximumPrice = BuyOrders[order.Coin][i].Price;
                 }
 
                 if (BuyOrders[order.Coin][index].Size >= temp)
@@ -129,12 +129,12 @@ namespace CryptoCurrency.Services
             {
                 var index = -1;
                 double minimumPrice = 222222;
-                for (var j = 0; j < SellOrders[order.Coin].Count; j++)
+                for (var i = 0; i < SellOrders[order.Coin].Count; i++)
                 {
-                    if (SellOrders[order.Coin][j].RemainingSize <= 0 ||
-                        !(SellOrders[order.Coin][j].Price < minimumPrice)) continue;
-                    index = j;
-                    minimumPrice = SellOrders[order.Coin][j].Price;
+                    if (SellOrders[order.Coin][i].RemainingSize <= 0 ||
+                        !(SellOrders[order.Coin][i].Price < minimumPrice)) continue;
+                    index = i;
+                    minimumPrice = SellOrders[order.Coin][i].Price;
                 }
 
                 if (SellOrders[order.Coin][index].Size >= temp)
