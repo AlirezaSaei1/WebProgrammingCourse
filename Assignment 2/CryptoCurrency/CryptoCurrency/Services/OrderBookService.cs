@@ -62,13 +62,45 @@ namespace CryptoCurrency.Services
         {
             if (type == "BUY")
             {
-                 
+                if (TotalBuy[order.Coin] >= target)
+                {
+                    float price = 0;
+                    int temp = target;
+                    while (temp > 0)
+                    {
+                        int index = -1;
+                        float maximumPrice = -1;
+                        for (int j = 0; j < BuyOrders[order.Coin].Count; j++)
+                        {
+                            if (BuyOrders[order.Coin][j].RemainingSize > 0 && BuyOrders[order.Coin][j].Price > maximumPrice)
+                            {
+                                index = j;
+                                maximumPrice = BuyOrders[order.Coin][j].Price;
+                            }
+                        }
+                        if (BuyOrders[order.Coin][index].Size >= temp)
+                        {
+                            BuyOrders[order.Coin][index].RemainingSize -= temp;
+                            price += BuyOrders[order.Coin][index].Price * temp;
+                            TotalBuy[order.Coin] -= temp;
+                            temp = 0;
+                        }
+                        else
+                        {
+                            price = (BuyOrders[order.Coin][index].Price * BuyOrders[order.Coin][index].RemainingSize);
+                            temp -= BuyOrders[order.Coin][index].RemainingSize;
+                            TotalBuy[order.Coin] -= BuyOrders[order.Coin][index].RemainingSize;
+                            BuyOrders[order.Coin][index].RemainingSize = 0;
+                        }
+                    }
+                    Console.WriteLine($"{order.Time} sell {order.Coin} {price.ToString("0.00")}");
+                }
             }
             else if (type == "SELL")
             {
                 if (TotalSell[order.Coin] >= target)
                 {
-                    var money = 0.0;
+                    var price = 0.0;
                     var temp = target;
                     while (temp > 0)
                     {
@@ -85,19 +117,19 @@ namespace CryptoCurrency.Services
                         if (SellOrders[order.Coin][index].Size >= temp)
                         {
                             SellOrders[order.Coin][index].RemainingSize -= temp;
-                            money += SellOrders[order.Coin][index].Price * temp;
+                            price += SellOrders[order.Coin][index].Price * temp;
                             TotalSell[order.Coin] -= temp;
                             temp = 0;
                         }
                         else
                         {
-                            money = SellOrders[order.Coin][index].Price * SellOrders[order.Coin][index].RemainingSize;
+                            price = SellOrders[order.Coin][index].Price * SellOrders[order.Coin][index].RemainingSize;
                             temp -= SellOrders[order.Coin][index].RemainingSize;
                             TotalSell[order.Coin] -= SellOrders[order.Coin][index].RemainingSize;
                             SellOrders[order.Coin][index].RemainingSize = 0;
                         }
                     }
-                    Console.WriteLine($"{order.Time} buy {order.Coin} {money.ToString("0.00")}");
+                    Console.WriteLine($"{order.Time} buy {order.Coin} {price.ToString("0.00")}");
                 }
             }
             else
