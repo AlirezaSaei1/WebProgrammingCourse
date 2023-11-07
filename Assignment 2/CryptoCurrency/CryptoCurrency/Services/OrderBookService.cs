@@ -23,7 +23,7 @@ namespace CryptoCurrency.Services
                 BuyOrders[order.Coin].Sort();
                 TotalBuy[order.Coin] += order.Size;
             }
-            CheckForCompletedOrders(order, target, "BUY");
+            CheckForCompletedBuyOrder(order, target);
         }
 
         public void ProcessSellOrder(Order order, int target)
@@ -39,7 +39,7 @@ namespace CryptoCurrency.Services
                 SellOrders[order.Coin].Sort();
                 TotalSell[order.Coin] += order.Size;
             }
-            CheckForCompletedOrders(order, target, "SELL");
+            CheckForCompletedSellOrder(order, target);
         }
 
         public void RemoveOrder(Order order)
@@ -58,84 +58,71 @@ namespace CryptoCurrency.Services
             }
         }
 
-        private static void CheckForCompletedOrders(Order order, int target, string type)
+        private static void CheckForCompletedBuyOrder(Order order, int target)
         {
-            if (type == "BUY")
+            if (TotalBuy[order.Coin] < target) return;
+            float price = 0;
+            var temp = target;
+            while (temp > 0)
             {
-                if (TotalBuy[order.Coin] >= target)
+                var index = -1;
+                float maximumPrice = -1;
+                for (var j = 0; j < BuyOrders[order.Coin].Count; j++)
                 {
-                    float price = 0;
-                    int temp = target;
-                    while (temp > 0)
-                    {
-                        int index = -1;
-                        float maximumPrice = -1;
-                        for (int j = 0; j < BuyOrders[order.Coin].Count; j++)
-                        {
-                            if (BuyOrders[order.Coin][j].RemainingSize > 0 && BuyOrders[order.Coin][j].Price > maximumPrice)
-                            {
-                                index = j;
-                                maximumPrice = BuyOrders[order.Coin][j].Price;
-                            }
-                        }
-                        if (BuyOrders[order.Coin][index].Size >= temp)
-                        {
-                            BuyOrders[order.Coin][index].RemainingSize -= temp;
-                            price += BuyOrders[order.Coin][index].Price * temp;
-                            TotalBuy[order.Coin] -= temp;
-                            temp = 0;
-                        }
-                        else
-                        {
-                            price = (BuyOrders[order.Coin][index].Price * BuyOrders[order.Coin][index].RemainingSize);
-                            temp -= BuyOrders[order.Coin][index].RemainingSize;
-                            TotalBuy[order.Coin] -= BuyOrders[order.Coin][index].RemainingSize;
-                            BuyOrders[order.Coin][index].RemainingSize = 0;
-                        }
-                    }
-                    Console.WriteLine($"{order.Time} sell {order.Coin} {price.ToString("0.00")}");
+                    if (BuyOrders[order.Coin][j].RemainingSize <= 0 ||
+                        !(BuyOrders[order.Coin][j].Price > maximumPrice)) continue;
+                    index = j;
+                    maximumPrice = BuyOrders[order.Coin][j].Price;
+                }
+                if (BuyOrders[order.Coin][index].Size >= temp)
+                {
+                    BuyOrders[order.Coin][index].RemainingSize -= temp;
+                    price += BuyOrders[order.Coin][index].Price * temp;
+                    TotalBuy[order.Coin] -= temp;
+                    temp = 0;
+                }
+                else
+                {
+                    price = (BuyOrders[order.Coin][index].Price * BuyOrders[order.Coin][index].RemainingSize);
+                    temp -= BuyOrders[order.Coin][index].RemainingSize;
+                    TotalBuy[order.Coin] -= BuyOrders[order.Coin][index].RemainingSize;
+                    BuyOrders[order.Coin][index].RemainingSize = 0;
                 }
             }
-            else if (type == "SELL")
+            Console.WriteLine($"{order.Time} sell {order.Coin} {price.ToString("0.00")}");
+        }
+        private static void CheckForCompletedSellOrder(Order order, int target)
+        {
+            if (TotalSell[order.Coin] < target) return;
+            var price = 0.0;
+            var temp = target;
+            while (temp > 0)
             {
-                if (TotalSell[order.Coin] >= target)
+                var index = -1;
+                double minimumPrice = 200001;
+                for (var j = 0; j < SellOrders[order.Coin].Count; j++)
                 {
-                    var price = 0.0;
-                    var temp = target;
-                    while (temp > 0)
-                    {
-                        var index = -1;
-                        double minimumPrice = 200001;
-                        for (int j = 0; j < SellOrders[order.Coin].Count; j++)
-                        {
-                            if (SellOrders[order.Coin][j].RemainingSize > 0 && SellOrders[order.Coin][j].Price < minimumPrice)
-                            {
-                                index = j;
-                                minimumPrice = SellOrders[order.Coin][j].Price;
-                            }
-                        }
-                        if (SellOrders[order.Coin][index].Size >= temp)
-                        {
-                            SellOrders[order.Coin][index].RemainingSize -= temp;
-                            price += SellOrders[order.Coin][index].Price * temp;
-                            TotalSell[order.Coin] -= temp;
-                            temp = 0;
-                        }
-                        else
-                        {
-                            price = SellOrders[order.Coin][index].Price * SellOrders[order.Coin][index].RemainingSize;
-                            temp -= SellOrders[order.Coin][index].RemainingSize;
-                            TotalSell[order.Coin] -= SellOrders[order.Coin][index].RemainingSize;
-                            SellOrders[order.Coin][index].RemainingSize = 0;
-                        }
-                    }
-                    Console.WriteLine($"{order.Time} buy {order.Coin} {price.ToString("0.00")}");
+                    if (SellOrders[order.Coin][j].RemainingSize <= 0 ||
+                        !(SellOrders[order.Coin][j].Price < minimumPrice)) continue;
+                    index = j;
+                    minimumPrice = SellOrders[order.Coin][j].Price;
+                }
+                if (SellOrders[order.Coin][index].Size >= temp)
+                {
+                    SellOrders[order.Coin][index].RemainingSize -= temp;
+                    price += SellOrders[order.Coin][index].Price * temp;
+                    TotalSell[order.Coin] -= temp;
+                    temp = 0;
+                }
+                else
+                {
+                    price = SellOrders[order.Coin][index].Price * SellOrders[order.Coin][index].RemainingSize;
+                    temp -= SellOrders[order.Coin][index].RemainingSize;
+                    TotalSell[order.Coin] -= SellOrders[order.Coin][index].RemainingSize;
+                    SellOrders[order.Coin][index].RemainingSize = 0;
                 }
             }
-            else
-            {
-                Console.WriteLine("Invalid Type");
-            }
+            Console.WriteLine($"{order.Time} buy {order.Coin} {price.ToString("0.00")}");
         }
     }   
 }
