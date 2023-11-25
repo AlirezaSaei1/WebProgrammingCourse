@@ -54,10 +54,7 @@ namespace CryptoCurrency.Services
                 var allSellOrders = BuyOrders.Values.SelectMany(orders => orders).ToList();
                 var sellOrderToRemove = allSellOrders.FirstOrDefault(o => o.Id == order.Id);
 
-                if (sellOrderToRemove == null)
-                {
-                    return;
-                }
+                if (sellOrderToRemove == null) { }
                 else
                 {
                     if (TotalSell[sellOrderToRemove.Coin] - order.Size < target)
@@ -87,7 +84,7 @@ namespace CryptoCurrency.Services
         private static void CheckForCompletedBuyOrder(Order order, int target)
         {
             if (TotalBuy[order.Coin] < target) return;
-            float price = 0;
+            float cumulativePrice = 0;
             var temp = target;
             while (temp > 0)
             {
@@ -106,26 +103,26 @@ namespace CryptoCurrency.Services
                 if (BuyOrders[order.Coin][index].Size >= temp)
                 {
                     BuyOrders[order.Coin][index].RemainingSize -= temp;
-                    price += BuyOrders[order.Coin][index].Price * temp;
+                    cumulativePrice += BuyOrders[order.Coin][index].Price * temp;
                     TotalBuy[order.Coin] -= temp;
                     temp = 0;
                 }
                 else
                 {
-                    price = (BuyOrders[order.Coin][index].Price * BuyOrders[order.Coin][index].RemainingSize);
+                    cumulativePrice = (BuyOrders[order.Coin][index].Price * BuyOrders[order.Coin][index].RemainingSize);
                     temp -= BuyOrders[order.Coin][index].RemainingSize;
                     TotalBuy[order.Coin] -= BuyOrders[order.Coin][index].RemainingSize;
                     BuyOrders[order.Coin][index].RemainingSize = 0;
                 }
             }
 
-            Console.WriteLine($"{order.Time} sell {order.Coin} {price.ToString("0.00")}");
+            Console.WriteLine($"{order.Time} sell {order.Coin} {cumulativePrice.ToString("0.00")}");
         }
 
         private static void CheckForCompletedSellOrder(Order order, int target)
         {
             if (TotalSell[order.Coin] < target) return;
-            var price = 0.0;
+            var cumulativePrice = 0.0;
             var temp = target;
             while (temp > 0)
             {
@@ -144,20 +141,20 @@ namespace CryptoCurrency.Services
                 if (SellOrders[order.Coin][index].Size >= temp)
                 {
                     SellOrders[order.Coin][index].RemainingSize -= temp;
-                    price += SellOrders[order.Coin][index].Price * temp;
+                    cumulativePrice += SellOrders[order.Coin][index].Price * temp;
                     TotalSell[order.Coin] -= temp;
                     temp = 0;
                 }
                 else
                 {
-                    price = SellOrders[order.Coin][index].Price * SellOrders[order.Coin][index].RemainingSize;
+                    cumulativePrice = SellOrders[order.Coin][index].Price * SellOrders[order.Coin][index].RemainingSize;
                     temp -= SellOrders[order.Coin][index].RemainingSize;
                     TotalSell[order.Coin] -= SellOrders[order.Coin][index].RemainingSize;
                     SellOrders[order.Coin][index].RemainingSize = 0;
                 }
             }
 
-            Console.WriteLine($"{order.Time} buy {order.Coin} {price.ToString("0.00")}");
+            Console.WriteLine($"{order.Time} buy {order.Coin} {cumulativePrice.ToString("0.00")}");
         }
     }
 }
