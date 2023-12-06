@@ -33,14 +33,12 @@ public class CategoryController : Controller
         {
             ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
         }
-        if (ModelState.IsValid)
-        {
-            _db.Categories.Add(obj);
-            _db.SaveChanges();
-            TempData["success"] = "Category created successfully";
-            return RedirectToAction("Index");
-        }
-        return View(obj);   
+
+        if (!ModelState.IsValid) return View(obj);
+        _db.Categories?.Add(obj);
+        _db.SaveChanges();
+        TempData["success"] = "Category created successfully";
+        return RedirectToAction("Index");
     }
 
     //GET
@@ -50,7 +48,7 @@ public class CategoryController : Controller
         {
             return NotFound();
         }
-        var categoryFromDb = _db.Categories.Find(id);
+        var categoryFromDb = _db.Categories?.Find(id);
         //var categoryFromDbFirst = _db.Categories.FirstOrDefault(u=>u.Id==id);
         //var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
 
@@ -73,7 +71,7 @@ public class CategoryController : Controller
         }
         if (ModelState.IsValid)
         {
-            _db.Categories.Update(obj);
+            _db.Categories?.Update(obj);
             _db.SaveChanges();
             TempData["success"] = "Category updated successfully";
             return RedirectToAction("Index");
@@ -87,7 +85,7 @@ public class CategoryController : Controller
         {
             return NotFound();
         }
-        var categoryFromDb = _db.Categories.Find(id);
+        var categoryFromDb = _db.Categories?.Find(id);
         //var categoryFromDbFirst = _db.Categories.FirstOrDefault(u=>u.Id==id);
         //var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
 
@@ -102,15 +100,15 @@ public class CategoryController : Controller
     //POST
     [HttpPost,ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public IActionResult DeletePOST(int? id)
+    public IActionResult DeletePost(int? id)
     {
-        var obj = _db.Categories.Find(id);
+        var obj = _db.Categories?.Find(id);
         if (obj == null)
         {
             return NotFound();
         }
 
-        _db.Categories.Remove(obj);
+        _db.Categories?.Remove(obj);
             _db.SaveChanges();
         TempData["success"] = "Category deleted successfully";
         return RedirectToAction("Index");
