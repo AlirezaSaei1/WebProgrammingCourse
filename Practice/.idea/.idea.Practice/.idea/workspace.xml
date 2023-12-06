@@ -5,20 +5,7 @@
     <projectFile profileName="Practice">Practice/Practice.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7353fc40-7ca0-416d-a430-a4e67457a8c1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Practice/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Practice/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/Practice.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/Practice.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/Views/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/bin/Debug/net6.0/Practice.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/bin/Debug/net6.0/Practice.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/bin/Debug/net6.0/Practice.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/bin/Debug/net6.0/Practice.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/bin/Debug/net6.0/ref/Practice.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/bin/Debug/net6.0/ref/Practice.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/Practice.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/Practice.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/Practice.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/Practice.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/Practice.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/Practice.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/Practice.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/Practice.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/ref/Practice.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/obj/Debug/net6.0/ref/Practice.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Practice/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/obj/staticwebassets.pack.sentinel" afterDir="false" />
-    </list>
+    <list default="true" id="7353fc40-7ca0-416d-a430-a4e67457a8c1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701885673003</updated>
-      <workItem from="1701885692947" duration="8519000" />
+      <workItem from="1701885692947" duration="9209000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jJ6BxDh7oHnQbBImlFxpUJhKjmXzjj9RwELHo+7M5eA=",
+  "Hash": "/UFPkPYx0F98o81vX/ac1R0o6mK3nW/CFoJxGj3vx1Y=",
   "Source": "Practice",
   "BasePath": "_content/Practice",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "F:\\University 7\\Web\\WebProgrammingCourse\\Practice\\Practice\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Practice.bundle.scp.css"
+    },
+    {
+      "Identity": "F:\\University 7\\Web\\WebProgrammingCourse\\Practice\\Practice\\wwwroot\\css\\bootswatchTheme.css",
+      "SourceId": "Practice",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\University 7\\Web\\WebProgrammingCourse\\Practice\\Practice\\wwwroot\\",
+      "BasePath": "_content/Practice",
+      "RelativePath": "css/bootswatchTheme.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\bootswatchTheme.css"
     },
     {
       "Identity": "F:\\University 7\\Web\\WebProgrammingCourse\\Practice\\Practice\\wwwroot\\css\\site.css",
