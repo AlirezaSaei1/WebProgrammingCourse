@@ -6,7 +6,7 @@ public class Product
     public int Rating { get; set; }
     public List<string> Colors { get; set; }
     public List<string> Sizes { get; set; }
-    public List<string> Images { get; set; }
+    public List<byte[]> Images { get; set; }
     public string Description { get; set; }
     public decimal Price { get; set; }
     public int Inventory { get; set; }

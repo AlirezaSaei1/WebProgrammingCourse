@@ -6,6 +6,6 @@ public class Category
     public string Name { get; set; }
     public List<Category> Children { get; set; }
     public Category Parent { get; set; }
-    public string Image { get; set; }
+    public List<byte[]> Image { get; set; }
     public List<Product> Products { get; set; }
 }

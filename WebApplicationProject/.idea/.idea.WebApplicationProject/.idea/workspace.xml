@@ -6,15 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39d733ee-14a5-42ca-aaad-438ed866250c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplicationProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplicationProject/bin/Debug/net6.0/WebApplicationProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationProject/bin/Debug/net6.0/WebApplicationProject.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplicationProject/bin/Debug/net6.0/WebApplicationProject.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationProject/bin/Debug/net6.0/WebApplicationProject.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplicationProject/bin/Debug/net6.0/ref/WebApplicationProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationProject/bin/Debug/net6.0/ref/WebApplicationProject.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplicationProject/obj/Debug/net6.0/WebApplicationProject.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationProject/obj/Debug/net6.0/WebApplicationProject.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplicationProject/obj/Debug/net6.0/WebApplicationProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationProject/obj/Debug/net6.0/WebApplicationProject.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplicationProject/obj/Debug/net6.0/WebApplicationProject.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationProject/obj/Debug/net6.0/WebApplicationProject.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplicationProject/obj/Debug/net6.0/ref/WebApplicationProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationProject/obj/Debug/net6.0/ref/WebApplicationProject.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplicationProject/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationProject/obj/staticwebassets.pack.sentinel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Practice/.idea/.idea.Practice/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice/.idea/.idea.Practice/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +73,7 @@
       <updated>1700928989624</updated>
       <workItem from="1700929010594" duration="605000" />
       <workItem from="1700931056693" duration="66000" />
+      <workItem from="1703240845570" duration="373000" />
     </task>
     <servers />
   </component>
